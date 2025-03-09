@@ -6,3 +6,8 @@
 ### How to do this?
 
 ## Sections 2
+
+```sql
+select * from tableName;
+
+```
