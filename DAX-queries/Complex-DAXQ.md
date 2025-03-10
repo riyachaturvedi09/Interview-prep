@@ -18,13 +18,18 @@ Best Selling products = SUMX(TOPN (1, Products,[total Sales]),[TotalSales])
 
 Best Selling products = CONCATENATE( 
     SUMX(
-        TOPN (3, Filter( Products,[total Sales] <> Null) // checks whether the total sales value is NULL or not
+        -- // checks whether the total sales value is NULL or not
+        TOPN (3, Filter( Products,[total Sales] <> Null) 
         ),
         [Total Sales]
     ),
-    product([ProdcutName]) & format([Total Sales]," | $0.0") . // Expression for Concat
-    UNICHAR(10), // parameter for space
-    [Total Sales]. // Parameter to sort the sales value
+    -- // Expression for Concat
+    product([ProdcutName]) & format([Total Sales]," | $0.0")  
+    -- // parameter for space
+    UNICHAR(10), 
+    -- // Parameter to sort the sales value 
+    [Total Sales],
+    
     DESC
 )
 
