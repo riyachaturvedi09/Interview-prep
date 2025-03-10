@@ -100,3 +100,4 @@ DateDiff_Value = DATEDIFF(Sales[orderdate],Sales[Salesdate],DAY)
 ```sql
    LastYearSales = Calculate(SUM(Sales[Amount]),SAMEPERIODLASTYEAR(Sales[OrderDate]))
 ```
+
