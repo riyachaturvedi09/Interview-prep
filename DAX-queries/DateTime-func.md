@@ -18,7 +18,7 @@
 PreviousMonth_Revenue= Calculate(
     [TotalRevenue],DATESMTD(calender[Date],-1,Month)
 
-    -- the DATESMTD here finds the the last month from the calender table & then Calculates the previous month's revenue.
+    -- the DATESMTD/DATESQTD/DATEYTD here finds the the last month from the calender table & then Calculates the previous month's revenue.
 )
 
 ```
