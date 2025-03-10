@@ -34,10 +34,12 @@ Best Selling products = CONCATENATEX(
 
     DESC
 )
-
 ```
+
+ 
 ##### Step4- To find the 3 top Selling product from each month - calculating total sales with Names & Sales Value & also want to see the contribution in the current month's sales
 
+```sql
 Best Selling products = 
 <!-- variable to hold the totalsale- reference to calculate the %contribution -->
 VAR totSale = [Total_sales] 
@@ -61,7 +63,7 @@ CONCATENATEX(
         DESC
     )
 
-
+```
 
 
 
