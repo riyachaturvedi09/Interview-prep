@@ -1,5 +1,6 @@
 # RUNNING TOTAL FOR DATES
 
+
 #### Monthly Running total - Works with Date-Number
 
 ```sql
@@ -14,7 +15,7 @@ Calculate(
 ```
 
 
-#### Product Running total - Works with Date-Number
+#### Product Running total - Works with NON-Numbers
 ##### step1
 ```sql
 Pro_running_total = 
@@ -28,6 +29,7 @@ RANX(
 ,
 ```
 ##### step2
+
 ```sql
 -- Calculate the running total for the current Rank where takes sum of the totalsales where rank is < current rank
 Var Prod_rank = RANX(
@@ -56,3 +58,5 @@ RETURN RunningTotal;
         RunningTotal
     )
 ```
+
+
