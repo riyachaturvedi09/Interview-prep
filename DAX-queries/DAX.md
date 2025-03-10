@@ -1,24 +1,24 @@
-# DAX Practice Questions
+# sh Practice Questions
 
-## Basic Power DAX Queries
+## Basic Power sh Queries
 
 ### Sum of the Sales Amount
-'''dax
+'''sh
 TotalSales = SUM(Sales[Amount])
 '''
 
 ### Average of the Sales Amount
-'''dax
+'''sh
 TotalSales = AVG(Sales[Amount])
 '''
 
 ### MAX of the Sales Amount
-'''dax
+'''sh
 TotalSales = MAX(Sales[Amount])
 '''
 
 ### MIN of the Sales Amount
-'''dax
+'''sh
 TotalSales = MIN(Sales[Amount])
 '''
 
@@ -26,16 +26,16 @@ TotalSales = MIN(Sales[Amount])
 ### Date and time functions are used to manipulate dates and time
 
 #### Date Returns Datetime format
-'''dax
+'''sh
 DateValue = Date(20,10,1)
 '''
 
 #### Today Returns Datetime format
-'''dax
+'''sh
 CurrentDate = Today()
 '''
 #### DATEDIFF Returns Datetime format
-'''dax
+'''sh
 DateDiff_Value = DATEDIFF(Sales[orderdate],Sales[Salesdate],DAY)
 '''
 
@@ -43,12 +43,12 @@ DateDiff_Value = DATEDIFF(Sales[orderdate],Sales[Salesdate],DAY)
 ### Returns a table as subset of the Table on which filter is applied
 
 #### ALL - Removes all the filters from the table
-'''dax
+'''sh
  AllSales = Calculate(Sum(Sales[Amount]),ALL(Sales)) 
 '''
 
 #### RELATED - Returns a table related to the 1:M side of the relationship, always applied on 1 side of the relationship
-'''dax
+'''sh
  AllSales = RELATED(Product[Product_Category]) 
 '''
 
@@ -57,19 +57,19 @@ DateDiff_Value = DATEDIFF(Sales[orderdate],Sales[Salesdate],DAY)
 
 #### ISBLANK - checks the value is blank or not
 
-'''dax
+'''sh
  ISBlankCheck = ISBLANK(Sales[Aount])
 '''
 
 #### ISERROR- checks if error returned or not
 
-'''dax
+'''sh
  ISErrorCheck = ISERROR(Sales[Amount]/ Sales[Quantity])
 '''
 
 #### ISNUMBER- checks if value is number or not
 
-'''dax
+'''sh
  ISNumberCheck = ISNUMBER(Sales[Amount])
 '''
 
@@ -78,12 +78,12 @@ DateDiff_Value = DATEDIFF(Sales[orderdate],Sales[Salesdate],DAY)
 ### These functions work with relationships between tables.
 
 #### RELATEDTABLE- Returns 
-'''dax
+'''sh
  ISNumberCheck = RELATEDTABLE(Sales)
 '''
 
 #### RELATEDVALUE- Returns 
-'''dax
+'''sh
  ISNumberCheck = RELATEDVALUE(Sales[Product])
 '''
 
@@ -91,12 +91,12 @@ DateDiff_Value = DATEDIFF(Sales[orderdate],Sales[Salesdate],DAY)
 ### Time intelligence functions work with time periods to create calculations over those periods
 
 #### TOTALYTD/TOTALMTD/TOTALQMTD- Returns year-to-date/Month-to-date/Quarter-to-date calculations
-'''dax
+'''sh
     TotalSales_YeartoDate = TOTALYTD(SUM(Sales[Amount],Sales[Orderdate])
     )   
 '''
 
 #### SAMEPERIODLASTYEAR: Returns a table that contains a column of dates shifted one year back.
-'''dax
+'''sh
    LastYearSales = Calculate(SUM(Sales[Amount]),SAMEPERIODLASTYEAR(Sales[OrderDate]))
 '''
