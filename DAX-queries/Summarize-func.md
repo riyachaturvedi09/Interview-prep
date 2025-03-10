@@ -16,7 +16,7 @@ SUMMARIZE(
     [name2], expression2,
     ...
 )
-```sh
+```
 
 #### Sales Value of the best Selling Month
 <!-- sales table is not at the granuality level at which we want calculation, it has duplicate dates in the sales table -->
