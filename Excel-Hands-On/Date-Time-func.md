@@ -2,21 +2,23 @@
 
 ```sh
 EDATE – add a specified number of months to a date in Excel
+EDATE(CellRef,month-to-be-added);
+EDATE(b1,3);
 ```
 ```sh
 EOMONTH – convert a date to the last day of the month (e.g., 7/18/2018 to 7/31/2018)
 ```
 ```sh
-DATE – Returns a number that represents the date (yyyy/mm/dd) in Excel. This formula is useful when 
-```
-```sh
-working with Excel functions that have a date as an argument.
+DATE – Returns a number that represents the date (yyyy/mm/dd) in Excel.
+This formula is useful when working with Excel functions that have a date as an argument.
 ```
 ```sh
 TODAY – insert and display today’s date in a cell
+Today();
 ```
 ```sh
 NETWORKDAYS – Returns the number of whole workdays between two specified dates.
+NETWORKINGDAYS(DATE2,DATE1)
 ```
 ```sh
 YEAR – extracts and displays the year from a date (e.g., 7/18/2018 to 2018) in Excel
