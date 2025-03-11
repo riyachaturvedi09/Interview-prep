@@ -17,9 +17,7 @@ Mixed ($A1 or A$1) is partially fixed.
 
 ##### IFERROR function
 ```sh
-Absolute ($A$1) remains fixed 
-Relative (A1) changes
-Mixed ($A1 or A$1) is partially fixed.
+IFError Func returns customized value whenever a error is occured
 ```
 
 #####  difference between COUNT, COUNTA, COUNTIF, and COUNTIFS?
@@ -34,8 +32,7 @@ COUNTIFS: Counts based on multiple conditions
 ##### difference between SUM(), SUMIF(), and SUMIFS()?
 
 ```sh
-SUM(A1:A10) will add all the numbers from cells A1 to A10.
-SUMIF(A1:A10, ">5") will sum all numbers greater than 5 in the range A1 to A10
-SUMIFS(A1:A10, B1:B10, "X", C1:C10, ">5")
-will sum all numbers in the range A1 to A10 where the corresponding cells in range B1 to B10 equal "X" and those in C1 to C10 are greater than 5.
+SUM(A1:A10) - will add all the numbers from cells A1 to A10.
+SUMIF(A1:A10, ">5") - will sum all numbers greater than 5 in the range A1 to A10
+SUMIFS(A1:A10, B1:B10, "X", C1:C10, ">5") - will sum all numbers in the range A1 to A10 where the corresponding cells in range B1 to B10 equal "X" and those in C1 to C10 are greater than 5.
 ```
