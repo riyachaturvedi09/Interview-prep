@@ -20,3 +20,10 @@
 # here B2:B5 refers to the CountRange then the If condition. 
 ```
 
+#### WHAT-IF
+##### use to perform complex maths calculations
+
+```sh
+=COUNTIFS(B2:B5, 'APPLE')
+# here B2:B5 refers to the CountRange then the If condition. 
+```
