@@ -91,3 +91,24 @@ HAVING SUM(Full_score) > 1
 -- sort by the total number of full scores in descending order (most full scores first).
 ORDER BY SUM(Full_score) DESC, hacker_id ASC;
 ``` 
+#### challenges created by each student. Sort your results by the total number of challenges in descending order. If more than one student created the same number of challenges, then sort the result by hacker_id. If more than one student created the same number of challenges and the count is less than the maximum number of challenges created, then exclude those students from the result.
+
+```sql
+
+WITH ChallengeCount AS (
+    SELECT C.hacker_id, H.name, COUNT(C.challenge_id) AS total_challenges
+    FROM Challenges C
+    JOIN Hackers H ON C.hacker_id = H.hacker_id
+    GROUP BY C.hacker_id, H.name
+)
+SELECT hacker_id, name, total_challenges
+FROM ChallengeCount
+WHERE total_challenges = (SELECT MAX(total_challenges) FROM ChallengeCount)
+   OR total_challenges IN (
+       SELECT total_challenges FROM ChallengeCount 
+       GROUP BY total_challenges 
+       HAVING COUNT(hacker_id) = 1
+   )
+ORDER BY total_challenges DESC, hacker_id ASC;
+
+```
