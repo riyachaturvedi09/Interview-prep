@@ -39,7 +39,8 @@ LIMIT 3;
 
 WITH total_tweets AS 
 (
-  -- STEP1: --  to find the number of tweets posted by each user in 2022 by grouping the tweet records by user ID and counting the tweets.
+  -- STEP1: --  to find the number of tweets posted by each user in 2022 by grouping 
+  -- the tweet records by user ID and counting the tweets.
   SELECT 
     user_id, 
     COUNT(tweet_id) AS tweet_count_per_user
@@ -48,7 +49,8 @@ WITH total_tweets AS
     AND '2022-12-31' 
   GROUP BY user_id
 ) 
--- Step2: we use the above CTE as temp table, then we use the tweet_count_per_user field as the tweet bucket and retrieve the number of users.
+-- Step2: we use the above CTE as temp table, then we use the tweet_count_per_user field 
+-- as the tweet bucket and retrieve the number of users.
   
 SELECT 
   tweet_count_per_user AS tweet_bucket, 
