@@ -58,16 +58,16 @@ SELECT
 FROM total_tweets 
 GROUP BY tweet_count_per_user;
 ```
-####
-<!-- -- respective hacker_id and name of hackers who achieved full scores for more than one challenge.  -->
-<!-- -- Order your output in descending order by the total number of challenges in which the hacker earned a full score -->
-<!-- --  If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id. -->
+#### Query to get the hacker Id, hacker name - 
+##### 1.respective hacker_id and name of hackers who achieved full scores for more than one challenge. ##### 2.Order your output in descending order by the total number of challenges in which the hacker earned a full score 
+##### 3.If more than one hacker received full scores in same number of challenges, then sort them by ascending hacker_id.
 
-```SQL
-ELECT 
+```sql
+SELECT 
     hacker_id,
     hacker_name
 FROM (
+  -- Checking If the Hacker Achieved the Full Score
     SELECT 
         S.hacker_id AS hacker_id, 
         H.name AS hacker_name,
@@ -81,7 +81,13 @@ FROM (
     JOIN Difficulty D ON C.difficulty_level = D.difficulty_level
     JOIN Hackers H ON S.hacker_id = H.hacker_id
 ) T
+-- Grouping by hacker_id and hacker_name ensures we count the full scores per hacker.
+-- HAVING SUM(Full_score) > 1 filters out hackers who got a full score only once or never.
+-- Only hackers who scored full marks in at least two different challenges remain.
+
 GROUP BY hacker_id, hacker_name
 HAVING SUM(Full_score) > 1
+
+-- sort by the total number of full scores in descending order (most full scores first).
 ORDER BY SUM(Full_score) DESC, hacker_id ASC;
 ``` 
