@@ -15,7 +15,7 @@ WITH SalaryRank AS (
     FROM employees
 )
 SELECT salary FROM SalaryRank WHERE rnk = 3;
-
+```
 
 ##### 2. Write a SQL query to find employees who have the same salary as another employee in the "employees" table.
 
