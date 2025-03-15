@@ -100,3 +100,57 @@ Round(((current_year_spend - previous_year_spend) / previous_year_spend)*100,2) 
 From CTE_YOY
 
 ```
+
+##### Write a query to find the maximum number of prime and non-prime batches that can be stored in the 500,000 square feet warehouse based on the following criteria:
+##### Prioritize stocking prime batches
+##### After accommodating prime items, allocate any remaining space to non-prime batches
+<!-- 1.
+products must be stocked in batches, so we want to find the largest available quantity of prime batches, 
+2.  then the largest available quantity of non-prime batches
+3. Non-prime items must always be available in stock to meet customer demand, so the non-prime item count should never be zero.
+4.Item count should be whole numbers (integers). 
+-->
+
+```sql
+--  This CTE (stats) retrieves aggregated data from the inventory table.
+-- It groups data by item_type and calculates:
+-- sqft: Total square footage occupied by each item_type.
+-- items: The total count of items for each item_type.
+-- The order by item_type desc sorts item_type in descending order.
+
+with stats as (
+  select
+    item_type,
+    sum(square_footage) as sqft,
+    count(*) as items
+  from inventory
+  group by item_type
+  order by item_type desc
+)
+
+It calculates the number of items that can fit within a 500,000 square-foot constraint.
+prime_eligible items are allocated space first.
+not_prime items get the remaining space based on the MOD() function
+
+select
+  item_type,
+  case item_type
+--   if prime_eligible then simply calculate the space
+    when 'prime_eligible' then items * floor(500000 / sqft) 
+    --  if not-prime then calculate the space using MOD(), MOD gives the remaining space 
+    when 'not_prime' then items * floor(mod(500000, lag(sqft) over ()) / sqft)
+  end as item_count
+from stats
+
+```
+
+####  you're tasked with finding the candidates best suited for an open Data Science job. You want to find candidates who are proficient in Python, Tableau, and PostgreSQL.Write a query to list the candidates who possess all of the required skills for the job. Sort the output by candidate ID in ascending order.
+
+```sql
+SELECT DISTINCT(candidate_id) FROM candidates where skill = 'Python'
+INTERSECT
+SELECT DISTINCT(candidate_id) FROM candidates where skill = 'Tableau'
+INTERSECT
+SELECT DISTINCT(candidate_id) FROM candidates where skill = 'PostgreSQL'
+
+```
