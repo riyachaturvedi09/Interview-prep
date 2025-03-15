@@ -84,3 +84,42 @@ WITH CTE AS (
 DELETE FROM Customer WHERE ID IN (SELECT ID FROM CTE WHERE RowNum > 1);
 
 ```
+##### 9. IMP Fetch Top N record
+```sql
+WITH ranked_cte AS (
+    SELECT * ,
+    DENSE RANK() OVER (PARTITION BY salary ORDER BY DESC ) AS rn
+    FROM employee
+)
+
+SELECT * FROM ranked_cte where rn <=3
+```
+
+##### 10. How can you create calculated columns in SQL for Power BI?
+
+```sql
+SELECT order_id, 
+       order_date, 
+       customer_id, 
+       order_total, 
+       order_total * 0.1 AS DiscountAmount 
+FROM orders;
+```
+
+##### 11. Employees Who Have the Highest Salary in Each Department
+```sql
+with rank_salary AS (
+    SELECT EMP_ID, DEPART_ID, SALARY
+    RANK() OVER(PARTITION BY DEPART_ID ORDER BY DESC) AS RN
+    FROM EMPLOYEE
+)
+SELECT EMP_ID,DEPART_ID,SALARY
+FROM RANK_SALARY 
+WHERE RN = 1;
+```
+
+##### 12. Find Consecutive Absentees from an Attendance Table
+##### Problem: Identify employees who were absent for 3 consecutive days
+```sql
+
+```
