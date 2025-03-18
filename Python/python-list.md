@@ -109,18 +109,15 @@ print(a)
 ```
 
 ### Merge Two List
-
+```sh
 a= [1,2,3]
 b= [4,5,6]
-
 c= a+b
-
+```
 ### Sort a list in python
 
-
-a= [5,3,8,10,4]
 ```sh
-
+a= [5,3,8,10,4]
 * a.sort() - sorts the list
 * a.sort(reverse= True)  - Sorts the list in reverse order
 * s= sorted(a,reverse=True) - - Sorts the list in reverse order
