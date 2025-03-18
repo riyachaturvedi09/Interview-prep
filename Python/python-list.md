@@ -3,18 +3,19 @@
 #### built-in dynamic sized array (automatically grows and shrinks)
 #### A list may contain mixed type of items, this is possible because a list mainly stores references at contiguous locations and actual items maybe stored at different locations.
 
-'''sh
 - list can contain duplicate items
 - list in python are mutable. 
 - items in List can be done directly using their position (index), starting from 0.
 - list are maintained in order of added.
-```
+
 
 ```sh
+
 a = [10,20,"gfg",True,40]
 print(a[0]) #10
 print(a[2]) #gfg
 print(type(a[2])) # str
+
 ```
 
 #### Adding Elements into List
