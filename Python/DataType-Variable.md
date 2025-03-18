@@ -1,4 +1,4 @@
-## Python Variables
+## Python Variables- STRING
 
 ####  variables are used to store data that can be referenced and manipulated during program execution. A variable is essentially a name that is assigned to a value.
 
@@ -48,7 +48,7 @@ print(s2)
 ```sh
 Numeric – int, float, complex
 Sequence Type – string, list, tuple
-Mapping Type – dict
+Mapping Type – dict Syntax: 'd = {1: 'Geeks', 2: 'For', 3: 'Geeks'}'
 Boolean – bool
 Set Type – set, frozenset
 Binary Types – bytes, bytearray, memoryview
