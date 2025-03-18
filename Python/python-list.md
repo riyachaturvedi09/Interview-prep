@@ -85,7 +85,8 @@ Which Method to Choose?
 * reverse(): Use for in-place modification when we don’t need the original list
 * List Slicing ([::-1]): Use to quickly create a reversed copy without modifying the original list
 * reversed(): Ideal for creating an iterator to reverse without modifying the original list and if we need an iterable for further operations.
-* Loop (In-Place): Use for more control during in-place reversal and especially if additional conditions are involved.*
+* Loop (In-Place): Use for more control during in-place reversal and especially if additional conditions are involved.
+
 
 ```sh
 a=[1,2,3,3,4,5,5,6]
@@ -107,3 +108,22 @@ a.reverse()
 print(a)
 ```
 
+### Merge Two List
+
+a= [1,2,3]
+b= [4,5,6]
+
+c= a+b
+
+### Sort a list in python
+
+
+a= [5,3,8,10,4]
+```sh
+
+* a.sort() - sorts the list
+* a.sort(reverse= True)  - Sorts the list in reverse order
+* s= sorted(a,reverse=True) - - Sorts the list in reverse order
+
+print(s)
+```
