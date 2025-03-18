@@ -52,3 +52,58 @@ del a[0]       # Remove value @ index 0 i.e 10
 
 ### Iterating Over Lists
 
+<!-- Using for loop -->
+```sh
+a= [1,2,3]
+
+for item in a:
+    print(item)
+# output
+1
+2
+3
+
+```
+### Nested Lists in Python
+```sh
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Access element at row 2, column 3
+print(matrix[1][2]) 
+#output
+6
+```
+## Examples
+
+### Remove duplicate 
+Which Method to Choose?
+* reverse(): Use for in-place modification when we don’t need the original list
+* List Slicing ([::-1]): Use to quickly create a reversed copy without modifying the original list
+* reversed(): Ideal for creating an iterator to reverse without modifying the original list and if we need an iterable for further operations.
+* Loop (In-Place): Use for more control during in-place reversal and especially if additional conditions are involved.*
+
+```sh
+a=[1,2,3,3,4,5,5,6]
+#Create an empty list to store unique values
+res = []
+for  i in a:
+    if i not in res:
+        res.append(i)
+print(res)
+
+#output
+# Remove duplicates by converting to a set
+[1, 2, 3, 4, 5]
+```
+### Reversing a list in python
+```sh
+a=[1,2,3,3,4,5,5,6]
+a.reverse()
+print(a)
+```
+
