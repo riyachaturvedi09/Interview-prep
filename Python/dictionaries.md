@@ -45,3 +45,25 @@ for values in d.values():
 for i,j in d.items():
     print(f"{key}: {value}")
 ```
+## removing Duplicate from dic
+
+```sh 
+#remove duplicate
+
+test_dict = {'gfg': 10, 'is': 15, 'best': 20, 'for': 10, 'geeks': 20}
+
+temp =[]
+res = dict()
+
+for key, val in test_dict.items():
+    if val not in temp:
+        temp.append(val)
+        res[key]= val
+print(test_dict)
+print(res)
+
+#output
+
+{'gfg': 10, 'is': 15, 'best': 20, 'for': 10, 'geeks': 20}
+{'gfg': 10, 'is': 15, 'best': 20}
+```
