@@ -1,5 +1,5 @@
 
-# Basic Level Queries**
+## Basic Level Queries**
 
 1. **Select Specific Columns**
 ```sql
@@ -168,7 +168,7 @@ WHERE employee_id NOT IN (
 
 ---
 
-# Advanced Level Queries**
+## Advanced Level Queries**
 
 17. **Window Functions (ROW_NUMBER, RANK, DENSE_RANK)**
 ```sql
