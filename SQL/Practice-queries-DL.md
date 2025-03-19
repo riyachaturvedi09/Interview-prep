@@ -166,3 +166,4 @@ INTERSECT
 SELECT DISTINCT(candidate_id) FROM candidates where skill = 'PostgreSQL'
 
 ```
+
