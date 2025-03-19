@@ -25,7 +25,7 @@ PIVOT(
 
 ### Problem 2- 
 You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N.
-
+```sh 
 BST Table Structure:
 +----+------+
 | N  |  P  |
@@ -38,6 +38,7 @@ BST Table Structure:
 | 8  | 5   |  
 | 5  | Null| -- Root node
 +----+-----
+```
 
 ```sql
 SELECT N, CASE
