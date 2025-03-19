@@ -57,7 +57,7 @@ FROM employees;
 
 ---
 
-## 🧩 **Intermediate Level Queries**
+##  Intermediate Level Queries**
 
 7. **GROUP BY with Aggregates**
 ```sql
