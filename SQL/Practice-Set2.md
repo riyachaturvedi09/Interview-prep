@@ -42,8 +42,10 @@ BST Table Structure:
 
 ```sql
 SELECT N, CASE
-    WHEN P IS NULL THEN "Root"
-    WHEN N NOT IN (SELECT DISTINCT P FROM BST WHERE P IS NOT NULL) THEN "Leaf"
+-- root is always be null cause it doesn't any parent
+    WHEN P IS NULL THEN "Root" 
+-- here creating a set of unique parents from P, if N is not there then its a leaf else its a inner
+    WHEN N NOT IN (SELECT DISTINCT P FROM BST WHERE P IS NOT NULL) THEN "Leaf" 
     ELSE "Inner"
     END
 FROM BST
