@@ -218,6 +218,7 @@ SalesAmount = CALCULATE(SUM(Sales[Amount]), USERELATIONSHIP(Sales[CustomerID], C
 ```
 **Option-2:**
 . Using Bidirectional Relationships (Direct Approach)
+
 In Power BI, many-to-many relationships can be created directly with bidirectional cross-filtering.
 Steps:
 Define a many-to-many relationship between the two tables.
