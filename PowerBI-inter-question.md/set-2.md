@@ -214,6 +214,15 @@ AggregatedSales = SUMMARIZE(Sales, Sales[Region], "TotalSales", SUM(Sales[Amount
 ```DAX
 SalesAmount = CALCULATE(SUM(Sales[Amount]), USERELATIONSHIP(Sales[CustomerID], Customers[CustomerID]))
 ```
+**Example:**
+. Using Bidirectional Relationships (Direct Approach)
+In Power BI, many-to-many relationships can be created directly with bidirectional cross-filtering.
+Steps:
+Define a many-to-many relationship between the two tables.
+Set the cross-filter direction to Both to allow filtering between the tables.
+Considerations:
+This approach can lead to performance issues with large datasets.
+Avoid using bidirectional relationships with complex models
 
 ---
 
