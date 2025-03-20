@@ -206,6 +206,8 @@ AggregatedSales = SUMMARIZE(Sales, Sales[Region], "TotalSales", SUM(Sales[Amount
 ### 12. How do you handle many-to-many relationships in Power BI?
 
 **Answer:**  
+**Option-1:**
+
 1. Create a **bridge table** to resolve many-to-many relationships.  
 2. Define relationships between fact and dimension tables.  
 3. Apply `USERELATIONSHIP` or `CROSSFILTER` in DAX to control relationship behavior.  
@@ -214,7 +216,7 @@ AggregatedSales = SUMMARIZE(Sales, Sales[Region], "TotalSales", SUM(Sales[Amount
 ```DAX
 SalesAmount = CALCULATE(SUM(Sales[Amount]), USERELATIONSHIP(Sales[CustomerID], Customers[CustomerID]))
 ```
-**Example:**
+**Option-2:**
 . Using Bidirectional Relationships (Direct Approach)
 In Power BI, many-to-many relationships can be created directly with bidirectional cross-filtering.
 Steps:
@@ -224,6 +226,18 @@ Considerations:
 This approach can lead to performance issues with large datasets.
 Avoid using bidirectional relationships with complex models
 
+**Option-3:**
+
+Using DAX to Control Relationships Dynamically
+You can use DAX functions such as USERELATIONSHIP or CROSSFILTER to control and activate relationships dynamically.
+Example Using USERELATIONSHIP:
+
+```DAX
+TotalSalesAlt = CALCULATE(
+    SUM(Sales[Amount]),
+    USERELATIONSHIP(Sales[ProductID], Products[ProductID])
+)
+```
 ---
 
 ### 13. How do you configure Incremental Data Refresh in Power BI?
