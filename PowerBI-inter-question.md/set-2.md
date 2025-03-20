@@ -221,8 +221,10 @@ SalesAmount = CALCULATE(SUM(Sales[Amount]), USERELATIONSHIP(Sales[CustomerID], C
 
 In Power BI, many-to-many relationships can be created directly with bidirectional cross-filtering.
 Steps:
-Define a many-to-many relationship between the two tables.
-Set the cross-filter direction to Both to allow filtering between the tables.
+
+1. Define a many-to-many relationship between the two tables.
+2. Set the cross-filter direction to Both to allow filtering between the tables.
+
 Considerations:
 This approach can lead to performance issues with large datasets.
 Avoid using bidirectional relationships with complex models
@@ -230,7 +232,9 @@ Avoid using bidirectional relationships with complex models
 **Option-3:**
 
 Using DAX to Control Relationships Dynamically
+
 You can use DAX functions such as USERELATIONSHIP or CROSSFILTER to control and activate relationships dynamically.
+
 Example Using USERELATIONSHIP:
 
 ```DAX
