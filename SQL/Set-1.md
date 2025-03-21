@@ -194,6 +194,26 @@ FROM (
 WHERE attendance_date = prev_day + INTERVAL 1 DAY
 AND prev_day = prev_two_days + INTERVAL 1 DAY;
 ```
+*#* Option-2
+
+```sql
+SELECT 
+    employee_id, 
+    attendance_date
+FROM (
+    SELECT 
+        employee_id,
+        attendance_date,
+        DATEDIFF(attendance_date, LAG(attendance_date) OVER (PARTITION BY employee_id ORDER BY attendance_date)) AS diff
+    FROM 
+        attendance
+    WHERE 
+        status = 'Absent'
+) consecutive_absences
+WHERE 
+    diff = 1;
+
+```
 *Common Task:* Identifying streaks or patterns.
 
 ---
