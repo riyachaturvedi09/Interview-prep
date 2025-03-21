@@ -1,5 +1,4 @@
-Here are concise answers to all the questions listed in your image:
-
+# HCL Interview QnA
 ---
 
 ### 1. **RLS & How did you implement it?**
