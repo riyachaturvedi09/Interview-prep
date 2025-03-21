@@ -1,7 +1,8 @@
-## Set-1 
+Here’s a list of **25-30 most frequently asked SQL questions** for the **NAB (National Australia Bank) coding round for Data Analyst roles**, along with solutions.
+
 ---
 
-###     **1. Retrieve Duplicate Records from a Table**
+###      **1. Retrieve Duplicate Records from a Table**
 
 ```sql
 SELECT column_name, COUNT(*)
@@ -12,7 +13,7 @@ HAVING COUNT(*) > 1;
 
 ---
 
-###     **2. Find Consecutive Absences in Employee Attendance**
+###      **2. Find Consecutive Absences in Employee Attendance**
 
 ```sql
 SELECT employee_id, attendance_date
@@ -29,7 +30,7 @@ AND prev_day = prev_two_days + INTERVAL 1 DAY;
 
 ---
 
-###     **3. Identify Orphan Records (No Matching Data in Another Table)**
+###      **3. Identify Orphan Records (No Matching Data in Another Table)**
 
 ```sql
 SELECT a.*
@@ -41,7 +42,7 @@ WHERE b.id IS NULL;
 
 ---
 
-###     **4. Calculate Moving Average Using Window Functions**
+###      **4. Calculate Moving Average Using Window Functions**
 
 ```sql
 SELECT order_id, order_date, 
@@ -51,7 +52,7 @@ FROM orders;
 
 ---
 
-###     **5. Find Second Highest Salary**
+###      **5. Find Second Highest Salary**
 
 ```sql
 SELECT MAX(salary) AS second_highest_salary
@@ -61,7 +62,7 @@ WHERE salary < (SELECT MAX(salary) FROM employees);
 
 ---
 
-###     **6. Identify Anomalies or Outliers**
+###      **6. Identify Anomalies or Outliers**
 
 ```sql
 SELECT order_id, amount
@@ -71,7 +72,7 @@ WHERE amount > (SELECT AVG(amount) + 2 * STDDEV(amount) FROM orders);
 
 ---
 
-###     **7. Handle NULL Values Using COALESCE or ISNULL**
+###      **7. Handle NULL Values Using COALESCE or ISNULL**
 
 ```sql
 SELECT employee_id, COALESCE(department, 'Not Assigned') AS department_name
@@ -80,7 +81,7 @@ FROM employees;
 
 ---
 
-###     **8. Get Employees with Highest Salary in Each Department**
+###      **8. Get Employees with Highest Salary in Each Department**
 
 ```sql
 SELECT department_id, employee_name, salary
@@ -94,7 +95,7 @@ WHERE rnk = 1;
 
 ---
 
-###     **9. Find Customers Who Have Placed More Than 5 Orders**
+###      **9. Find Customers Who Have Placed More Than 5 Orders**
 
 ```sql
 SELECT customer_id, COUNT(order_id) AS total_orders
@@ -105,7 +106,7 @@ HAVING COUNT(order_id) > 5;
 
 ---
 
-###     **10. Pivot Query to Transform Rows into Columns**
+###      **10. Pivot Query to Transform Rows into Columns**
 
 ```sql
 SELECT customer_id, 
@@ -117,7 +118,7 @@ GROUP BY customer_id;
 
 ---
 
-###     **11. Get the First and Last Order Date per Customer**
+###      **11. Get the First and Last Order Date per Customer**
 
 ```sql
 SELECT customer_id,
@@ -129,7 +130,7 @@ GROUP BY customer_id;
 
 ---
 
-###     **12. Calculate Year-over-Year Sales Growth**
+###      **12. Calculate Year-over-Year Sales Growth**
 
 ```sql
 SELECT YEAR(order_date) AS year, 
@@ -142,7 +143,7 @@ GROUP BY YEAR(order_date);
 
 ---
 
-###     **13. Identify Orders with Above Average Sales**
+###      **13. Identify Orders with Above Average Sales**
 
 ```sql
 SELECT order_id, amount
@@ -152,7 +153,7 @@ WHERE amount > (SELECT AVG(amount) FROM orders);
 
 ---
 
-###     **14. Delete Duplicates Without Using ROWID**
+###      **14. Delete Duplicates Without Using ROWID**
 
 ```sql
 DELETE FROM employees
@@ -165,7 +166,7 @@ WHERE id NOT IN (
 
 ---
 
-###     **15. Get Percentage Contribution of Sales by Each Product**
+###      **15. Get Percentage Contribution of Sales by Each Product**
 
 ```sql
 SELECT product_id, 
@@ -176,7 +177,7 @@ GROUP BY product_id;
 
 ---
 
-###     **16. Identify Employees Who Have No Department Assigned**
+###      **16. Identify Employees Who Have No Department Assigned**
 
 ```sql
 SELECT employee_name
@@ -186,7 +187,7 @@ WHERE department_id IS NULL;
 
 ---
 
-###     **17. Write a Query to Find Nth Highest Salary**
+###      **17. Write a Query to Find Nth Highest Salary**
 
 ```sql
 SELECT DISTINCT salary
@@ -196,7 +197,7 @@ WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM employees e2 WHERE e2.salary > e
 
 ---
 
-###     **18. Join 3 Tables Using INNER JOIN**
+###      **18. Join 3 Tables Using INNER JOIN**
 
 ```sql
 SELECT a.id, a.name, b.department_name, c.project_name
@@ -207,7 +208,7 @@ INNER JOIN projects c ON a.project_id = c.project_id;
 
 ---
 
-###     **19. Create a View to Store Employee Details with Salary > 50000**
+###      **19. Create a View to Store Employee Details with Salary > 50000**
 
 ```sql
 CREATE VIEW high_salary_employees AS
@@ -218,7 +219,7 @@ WHERE salary > 50000;
 
 ---
 
-###     **20. Find Median Salary Using PERCENTILE_CONT**
+###      **20. Find Median Salary Using PERCENTILE_CONT**
 
 ```sql
 SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary) AS median_salary
@@ -227,7 +228,7 @@ FROM employees;
 
 ---
 
-###     **21. Get Records with Non-Numeric Values in a Column**
+###      **21. Get Records with Non-Numeric Values in a Column**
 
 ```sql
 SELECT *
@@ -237,7 +238,7 @@ WHERE column_name NOT LIKE '%[0-9]%';
 
 ---
 
-###     **22. Get List of Employees Whose Name Starts with ‘A’**
+###      **22. Get List of Employees Whose Name Starts with ‘A’**
 
 ```sql
 SELECT *
@@ -247,7 +248,7 @@ WHERE employee_name LIKE 'A%';
 
 ---
 
-###     **23. Identify Duplicate Records with All Column Matches**
+###      **23. Identify Duplicate Records with All Column Matches**
 
 ```sql
 SELECT employee_id, COUNT(*)
@@ -258,7 +259,7 @@ HAVING COUNT(*) > 1;
 
 ---
 
-###     **24. SQL Query to Find Gaps in a Sequence**
+###      **24. SQL Query to Find Gaps in a Sequence**
 
 ```sql
 SELECT id + 1 AS missing_id
@@ -270,7 +271,7 @@ WHERE NOT EXISTS (
 
 ---
 
-###     **25. Find Records Updated in the Last 7 Days**
+###      **25. Find Records Updated in the Last 7 Days**
 
 ```sql
 SELECT *
@@ -280,7 +281,7 @@ WHERE DATEDIFF(CURDATE(), updated_date) <= 7;
 
 ---
 
-###     **26. Query to Calculate Running Total in a Table**
+###      **26. Query to Calculate Running Total in a Table**
 
 ```sql
 SELECT order_id, order_date, 
@@ -290,7 +291,7 @@ FROM orders;
 
 ---
 
-###     **27. Find Employees Who Joined in the Last 3 Months**
+###      **27. Find Employees Who Joined in the Last 3 Months**
 
 ```sql
 SELECT employee_name, joining_date
@@ -300,7 +301,7 @@ WHERE joining_date >= DATEADD(MONTH, -3, GETDATE());
 
 ---
 
-###     **28. Find Customers Who Have Not Placed Any Orders**
+###      **28. Find Customers Who Have Not Placed Any Orders**
 
 ```sql
 SELECT c.customer_id, c.customer_name
@@ -311,7 +312,7 @@ WHERE o.order_id IS NULL;
 
 ---
 
-###     **29. Query to Check for Duplicate Emails**
+###      **29. Query to Check for Duplicate Emails**
 
 ```sql
 SELECT email, COUNT(*) AS email_count
@@ -322,7 +323,7 @@ HAVING COUNT(*) > 1;
 
 ---
 
-###     **30. Delete All Records from a Table Except the Latest Record for Each User**
+###      **30. Delete All Records from a Table Except the Latest Record for Each User**
 
 ```sql
 DELETE FROM orders
