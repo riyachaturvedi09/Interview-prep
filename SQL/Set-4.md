@@ -1,7 +1,7 @@
 # Set-4 - NAB
 ---
 
-###    **Basic to Intermediate Level**
+##   Basic to Intermediate Level
 
 1. **Find Duplicate Records in a Table**
 ```sql
@@ -49,7 +49,7 @@ AND prev_day = prev_two_days + INTERVAL 1 DAY;
 
 ---
 
-###    **Intermediate to Advanced Level**
+##   Intermediate to Advanced Level
 
 6. **Find the Moving Average of Sales**
 ```sql

@@ -166,4 +166,32 @@ INTERSECT
 SELECT DISTINCT(candidate_id) FROM candidates where skill = 'PostgreSQL'
 
 ```
+### PROBELM- Write a query to output the names of those students whose best friends got offered a higher salary than them. Names must be ordered by the salary amount offered to the best friends. It is guaranteed that no two students got same salary offer.
 
+
+```SQL
+-- // NAMES OF whose best friends got offered a higher salary than them
+-- ordered by the salary amount offered to the best friends.
+
+--  TO GET THE STUDENT SALARY
+WITH CTE1 AS (
+SELECT S.ID, S.NAME , P.SALARY
+FROM STUDENTS S JOIN PACKAGES P
+ON S.ID = P.ID
+)
+,
+--  TO GET THE  BEST STUDENT'S BF SALARY
+CTE2 AS (
+SELECT F.ID, F.FRIEND_ID, P.SALARY
+FROM FRIENDS F JOIN PACKAGES P
+ON F.FRIEND_ID = P.ID
+)
+
+
+SELECT CTE1.NAME
+FROM CTE1 JOIN CTE2
+ON CTE1.ID = CTE2.ID
+WHERE CTE1.SALARY < CTE2.SALARY
+ORDER BY CTE2.SALARY;
+
+```

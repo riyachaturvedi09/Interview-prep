@@ -16,7 +16,7 @@ print(reverse_string("NAB"))
 def is_prime(n):
     if n <= 1:
         return False
-    for i in range(2, int(n**0.5) + 1):
+    for i in range(2, n):
         if n % i == 0:
             return False
     return True
@@ -28,10 +28,15 @@ print(is_prime(7))
 
 ###      **3. Find Duplicate Elements in a List**
 ```python
-def find_duplicates(lst):
-    return list(set([x for x in lst if lst.count(x) > 1]))
-
-print(find_duplicates([1, 2, 3, 4, 2, 1, 5]))
+def find_duplicate(list):
+    list1 = []
+    for i in list:
+        if i not in list1:
+            list1.append(i)
+        else:
+            return i
+    return "No duplicate"
+print(find_duplicate([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,20]))
 ```
 
 ---
