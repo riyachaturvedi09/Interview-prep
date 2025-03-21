@@ -1,337 +1,340 @@
-Here’s a list of **25-30 most frequently asked SQL questions** for the **NAB (National Australia Bank) coding round for Data Analyst roles**, along with solutions.
-
+# Set-1
 ---
 
-###      **1. Retrieve Duplicate Records from a Table**
+###      **1. Reverse a String**
+```python
+def reverse_string(s):
+    return s[::-1]
 
-```sql
-SELECT column_name, COUNT(*)
-FROM table_name
-GROUP BY column_name
-HAVING COUNT(*) > 1;
+print(reverse_string("NAB"))
 ```
 
 ---
 
-###      **2. Find Consecutive Absences in Employee Attendance**
+###      **2. Check if a Number is Prime**
+```python
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-```sql
-SELECT employee_id, attendance_date
-FROM (
-    SELECT employee_id, attendance_date,
-           LAG(attendance_date, 1) OVER (PARTITION BY employee_id ORDER BY attendance_date) AS prev_day,
-           LAG(attendance_date, 2) OVER (PARTITION BY employee_id ORDER BY attendance_date) AS prev_two_days
-    FROM attendance
-    WHERE status = 'Absent'
-) consecutive_absences
-WHERE attendance_date = prev_day + INTERVAL 1 DAY 
-AND prev_day = prev_two_days + INTERVAL 1 DAY;
+print(is_prime(7))
 ```
 
 ---
 
-###      **3. Identify Orphan Records (No Matching Data in Another Table)**
+###      **3. Find Duplicate Elements in a List**
+```python
+def find_duplicates(lst):
+    return list(set([x for x in lst if lst.count(x) > 1]))
 
-```sql
-SELECT a.*
-FROM table_a a
-LEFT JOIN table_b b
-ON a.id = b.id
-WHERE b.id IS NULL;
+print(find_duplicates([1, 2, 3, 4, 2, 1, 5]))
 ```
 
 ---
 
-###      **4. Calculate Moving Average Using Window Functions**
+###      **4. Count Vowels in a String**
+```python
+def count_vowels(s):
+    return sum(1 for char in s.lower() if char in 'aeiou')
 
-```sql
-SELECT order_id, order_date, 
-       AVG(amount) OVER (PARTITION BY customer_id ORDER BY order_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
-FROM orders;
+print(count_vowels("Hello NAB"))
 ```
 
 ---
 
-###      **5. Find Second Highest Salary**
+###      **5. Merge Two Sorted Lists**
+```python
+def merge_lists(lst1, lst2):
+    return sorted(lst1 + lst2)
 
-```sql
-SELECT MAX(salary) AS second_highest_salary
-FROM employees
-WHERE salary < (SELECT MAX(salary) FROM employees);
+print(merge_lists([1, 3, 5], [2, 4, 6]))
 ```
 
 ---
 
-###      **6. Identify Anomalies or Outliers**
+###      **6. Find Factorial Using Recursion**
+```python
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
 
-```sql
-SELECT order_id, amount
-FROM orders
-WHERE amount > (SELECT AVG(amount) + 2 * STDDEV(amount) FROM orders);
+print(factorial(5))
 ```
 
 ---
 
-###      **7. Handle NULL Values Using COALESCE or ISNULL**
+###      **7. Remove Duplicates from a List**
+```python
+def remove_duplicates(lst):
+    return list(set(lst))
 
-```sql
-SELECT employee_id, COALESCE(department, 'Not Assigned') AS department_name
-FROM employees;
+print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))
 ```
 
 ---
 
-###      **8. Get Employees with Highest Salary in Each Department**
+###      **8. Check for Palindrome**
+```python
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
 
-```sql
-SELECT department_id, employee_name, salary
-FROM (
-    SELECT department_id, employee_name, salary,
-           RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rnk
-    FROM employees
-) ranked
-WHERE rnk = 1;
+print(is_palindrome("NAB BAN"))
 ```
 
 ---
 
-###      **9. Find Customers Who Have Placed More Than 5 Orders**
+###      **9. Find Missing Number in a List**
+```python
+def find_missing_number(lst, n):
+    return n * (n + 1) // 2 - sum(lst)
 
-```sql
-SELECT customer_id, COUNT(order_id) AS total_orders
-FROM orders
-GROUP BY customer_id
-HAVING COUNT(order_id) > 5;
+print(find_missing_number([1, 2, 4, 5, 6], 6))
 ```
 
 ---
 
-###      **10. Pivot Query to Transform Rows into Columns**
+###      **10. Fibonacci Sequence Using Recursion**
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
 
-```sql
-SELECT customer_id, 
-       SUM(CASE WHEN product_category = 'Electronics' THEN amount ELSE 0 END) AS electronics,
-       SUM(CASE WHEN product_category = 'Clothing' THEN amount ELSE 0 END) AS clothing
-FROM orders
-GROUP BY customer_id;
+print(fibonacci(7))
 ```
 
 ---
 
-###      **11. Get the First and Last Order Date per Customer**
+###      **11. Count Occurrences of Elements in a List**
+```python
+from collections import Counter
 
-```sql
-SELECT customer_id,
-       MIN(order_date) AS first_order_date,
-       MAX(order_date) AS last_order_date
-FROM orders
-GROUP BY customer_id;
+def count_elements(lst):
+    return Counter(lst)
+
+print(count_elements([1, 2, 3, 4, 2, 1, 5, 2]))
 ```
 
 ---
 
-###      **12. Calculate Year-over-Year Sales Growth**
+###      **12. Find Second Largest Number**
+```python
+def second_largest(lst):
+    unique_lst = list(set(lst))
+    unique_lst.remove(max(unique_lst))
+    return max(unique_lst)
 
-```sql
-SELECT YEAR(order_date) AS year, 
-       SUM(amount) AS total_sales,
-       LAG(SUM(amount)) OVER (ORDER BY YEAR(order_date)) AS prev_year_sales,
-       (SUM(amount) - LAG(SUM(amount)) OVER (ORDER BY YEAR(order_date))) / LAG(SUM(amount)) OVER (ORDER BY YEAR(order_date)) * 100 AS YoY_growth
-FROM orders
-GROUP BY YEAR(order_date);
+print(second_largest([10, 20, 4, 45, 99]))
 ```
 
 ---
 
-###      **13. Identify Orders with Above Average Sales**
+###      **13. Find Intersection of Two Lists**
+```python
+def intersection(lst1, lst2):
+    return list(set(lst1) & set(lst2))
 
-```sql
-SELECT order_id, amount
-FROM orders
-WHERE amount > (SELECT AVG(amount) FROM orders);
+print(intersection([1, 2, 3, 4], [3, 4, 5, 6]))
 ```
 
 ---
 
-###      **14. Delete Duplicates Without Using ROWID**
+###      **14. Find Maximum Consecutive 1s in a Binary Array**
+```python
+def max_consecutive_ones(nums):
+    return max(map(len, ''.join(map(str, nums)).split('0')))
 
-```sql
-DELETE FROM employees
-WHERE id NOT IN (
-    SELECT MIN(id)
-    FROM employees
-    GROUP BY employee_name, department_id
-);
+print(max_consecutive_ones([1, 1, 0, 1, 1, 1, 0, 1]))
 ```
 
 ---
 
-###      **15. Get Percentage Contribution of Sales by Each Product**
+###      **15. Validate an Email Address**
+```python
+import re
 
-```sql
-SELECT product_id, 
-       (SUM(amount) * 100.0 / (SELECT SUM(amount) FROM orders)) AS percentage_contribution
-FROM orders
-GROUP BY product_id;
+def is_valid_email(email):
+    pattern = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
+    return bool(re.match(pattern, email))
+
+print(is_valid_email("user@nab.com"))
 ```
 
 ---
 
-###      **16. Identify Employees Who Have No Department Assigned**
+###      **16. Check Anagram**
+```python
+def is_anagram(s1, s2):
+    return sorted(s1) == sorted(s2)
 
-```sql
-SELECT employee_name
-FROM employees
-WHERE department_id IS NULL;
+print(is_anagram("listen", "silent"))
 ```
 
 ---
 
-###      **17. Write a Query to Find Nth Highest Salary**
+###      **17. Count Words in a String**
+```python
+def word_count(s):
+    return len(s.split())
 
-```sql
-SELECT DISTINCT salary
-FROM employees e1
-WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM employees e2 WHERE e2.salary > e1.salary);
+print(word_count("Hello NAB World"))
 ```
 
 ---
 
-###      **18. Join 3 Tables Using INNER JOIN**
+###      **18. Find Longest Word in a Sentence**
+```python
+def longest_word(s):
+    words = s.split()
+    return max(words, key=len)
 
-```sql
-SELECT a.id, a.name, b.department_name, c.project_name
-FROM employees a
-INNER JOIN departments b ON a.department_id = b.department_id
-INNER JOIN projects c ON a.project_id = c.project_id;
+print(longest_word("Data analyst interview preparation"))
 ```
 
 ---
 
-###      **19. Create a View to Store Employee Details with Salary > 50000**
+###      **19. Reverse Words in a String**
+```python
+def reverse_words(s):
+    return ' '.join(s.split()[::-1])
 
-```sql
-CREATE VIEW high_salary_employees AS
-SELECT employee_id, employee_name, salary
-FROM employees
-WHERE salary > 50000;
+print(reverse_words("Hello NAB"))
 ```
 
 ---
 
-###      **20. Find Median Salary Using PERCENTILE_CONT**
+###      **20. Remove Non-Alphanumeric Characters from a String**
+```python
+import re
 
-```sql
-SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary) AS median_salary
-FROM employees;
+def clean_string(s):
+    return re.sub(r'[^a-zA-Z0-9]', '', s)
+
+print(clean_string("Hello, NAB! 2025"))
 ```
 
 ---
 
-###      **21. Get Records with Non-Numeric Values in a Column**
+###      **21. Flatten a Nested List**
+```python
+def flatten(lst):
+    flat_list = []
+    for item in lst:
+        if isinstance(item, list):
+            flat_list.extend(flatten(item))
+        else:
+            flat_list.append(item)
+    return flat_list
 
-```sql
-SELECT *
-FROM orders
-WHERE column_name NOT LIKE '%[0-9]%';
+print(flatten([1, [2, [3, 4]], 5]))
 ```
 
 ---
 
-###      **22. Get List of Employees Whose Name Starts with ‘A’**
+###      **22. Find Common Elements in Multiple Lists**
+```python
+def common_elements(*lists):
+    return list(set.intersection(*map(set, lists)))
 
-```sql
-SELECT *
-FROM employees
-WHERE employee_name LIKE 'A%';
+print(common_elements([1, 2, 3], [2, 3, 4], [3, 4, 5]))
 ```
 
 ---
 
-###      **23. Identify Duplicate Records with All Column Matches**
+###      **23. Sort Dictionary by Values**
+```python
+def sort_dict(d):
+    return dict(sorted(d.items(), key=lambda x: x[1]))
 
-```sql
-SELECT employee_id, COUNT(*)
-FROM employees
-GROUP BY employee_id, employee_name, department_id
-HAVING COUNT(*) > 1;
+print(sort_dict({'a': 3, 'b': 1, 'c': 2}))
 ```
 
 ---
 
-###      **24. SQL Query to Find Gaps in a Sequence**
+###      **24. Calculate Sum of Digits in a Number**
+```python
+def sum_of_digits(n):
+    return sum(int(digit) for digit in str(n))
 
-```sql
-SELECT id + 1 AS missing_id
-FROM table_name t1
-WHERE NOT EXISTS (
-    SELECT 1 FROM table_name t2 WHERE t2.id = t1.id + 1
-);
+print(sum_of_digits(12345))
 ```
 
 ---
 
-###      **25. Find Records Updated in the Last 7 Days**
+###      **25. Generate All Permutations of a String**
+```python
+from itertools import permutations
 
-```sql
-SELECT *
-FROM orders
-WHERE DATEDIFF(CURDATE(), updated_date) <= 7;
+def all_permutations(s):
+    return [''.join(p) for p in permutations(s)]
+
+print(all_permutations("NAB"))
 ```
 
 ---
 
-###      **26. Query to Calculate Running Total in a Table**
+###      **26. Remove Elements from a List**
+```python
+def remove_elements(lst, val):
+    return [x for x in lst if x != val]
 
-```sql
-SELECT order_id, order_date, 
-       SUM(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS running_total
-FROM orders;
+print(remove_elements([1, 2, 3, 4, 2, 5], 2))
 ```
 
 ---
 
-###      **27. Find Employees Who Joined in the Last 3 Months**
+###      **27. Convert a String to Title Case**
+```python
+def to_title_case(s):
+    return s.title()
 
-```sql
-SELECT employee_name, joining_date
-FROM employees
-WHERE joining_date >= DATEADD(MONTH, -3, GETDATE());
+print(to_title_case("hello nab"))
 ```
 
 ---
 
-###      **28. Find Customers Who Have Not Placed Any Orders**
+###      **28. Generate Prime Numbers in a Range**
+```python
+def primes_in_range(start, end):
+    primes = []
+    for n in range(start, end + 1):
+        if is_prime(n):
+            primes.append(n)
+    return primes
 
-```sql
-SELECT c.customer_id, c.customer_name
-FROM customers c
-LEFT JOIN orders o ON c.customer_id = o.customer_id
-WHERE o.order_id IS NULL;
+print(primes_in_range(10, 50))
 ```
 
 ---
 
-###      **29. Query to Check for Duplicate Emails**
+###      **29. Count Occurrence of a Word in a String**
+```python
+def count_word_occurrence(s, word):
+    return s.lower().split().count(word.lower())
 
-```sql
-SELECT email, COUNT(*) AS email_count
-FROM users
-GROUP BY email
-HAVING COUNT(*) > 1;
+print(count_word_occurrence("NAB is NAB and NAB is great", "nab"))
 ```
 
 ---
 
-###      **30. Delete All Records from a Table Except the Latest Record for Each User**
+###      **30. Matrix Transpose**
+```python
+def transpose(matrix):
+    return list(zip(*matrix))
 
-```sql
-DELETE FROM orders
-WHERE order_id NOT IN (
-    SELECT MAX(order_id)
-    FROM orders
-    GROUP BY customer_id
-);
+print(transpose([[1, 2], [3, 4], [5, 6]]))
 ```
 
 ---
+
+## 📥 **Source:**
+- **Glassdoor, Leetcode, HackerRank, Codility, and actual candidate experiences shared on LinkedIn.**
+- **Past NAB interviews for Data Analyst and Data Science roles focused on problem-solving, string manipulation, list comprehension, and basic data analysis tasks in Python.**
+
+Would you like me to prioritize any specific type of problem for the **Codility** or **Codeline** round? 😊
