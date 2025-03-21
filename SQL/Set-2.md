@@ -1,4 +1,5 @@
-#### 
+## Set-2
+
 ##### 1. Write a SQL query to retrieve the second-highest salary from an "employees" table.
 
 ```sql
