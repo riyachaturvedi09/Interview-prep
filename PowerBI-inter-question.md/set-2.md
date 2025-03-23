@@ -14,6 +14,14 @@
    TotalSalesByRegion = CALCULATE(SUM(Sales[Amount]), ALLEXCEPT(Sales, Sales[Region]))
    ```
 
+   - **ALLSELECTED:** RRemoves filters except user-applied ones.  
+   ```DAX
+   TotalSales_ALLSELECTED = 
+   CALCULATE( SUM(Sales[SalesAmount]),
+    ALLSELECTED(Sales[ProductCategory])
+)
+    ```
+
 - **REMOVEFILTERS:** Similar to `ALL` but designed for improved readability and can be used in more scenarios.  
    ```DAX
    TotalSalesNoFilter = CALCULATE(SUM(Sales[Amount]), REMOVEFILTERS(Sales))
